@@ -1,18 +1,16 @@
-/* Global reset för p-taggar */
 p {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Arial, sans-serif;
 }
 
-/* Globala stilar */
-body, html {
+body,
+html {
   margin: 0;
   padding: 0;
   height: 100%;
-  background-color: rgb(237, 237, 214);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: rgb(243, 243, 234);
+  font-family: Arial, sans-serif;
 }
 
-/* Layoutstilar */
 .app-wrapper {
   display: flex;
   flex-direction: column;
@@ -28,7 +26,6 @@ body, html {
   margin: 20px;
 }
 
-/* Inloggningsstilar */
 .login-main {
   margin-top: 40px;
   width: 100%;
@@ -38,9 +35,9 @@ body, html {
 }
 
 .login-container {
-  width: 300px;
+  width: 400px;
   padding: 20px;
-  border: 10px solid yellow;
+  border: 10px solid rgb(26, 25, 25);
   border-radius: 8px;
   background-color: #fff;
   margin: auto;
@@ -54,8 +51,7 @@ body, html {
   font-size: 1.5rem;
   font-weight: bold;
 }
-.welcomemessage{
-
+.welcomemessage {
   font-weight: bolder;
   text-align: center;
 }
@@ -74,6 +70,7 @@ body, html {
 
 .login-input-group input {
   width: 100%;
+  max-width: 94%;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -87,36 +84,28 @@ body, html {
 .login-button {
   width: 100%;
   padding: 10px;
+  margin-top: 10px;
   color: white;
   font-weight: bold;
   border: none;
   border-radius: 5px;
-  background-color: rgb(226, 191, 14);
+  background-color: rgb(32, 32, 32);
   cursor: pointer;
 }
 
 .auth-links {
   display: flex;
   justify-content: end;
-  align-items: end;
+  align-items: center;
   flex-direction: row;
   font-size: 16px;
   padding-right: 20px;
 }
 
-.logout-button {
-  width: 100%;
-  color:#333;
-  border: none;
-  background-color: transparent;
-  cursor: pointer;
-  padding-right: 20px;
-}
-
 #logged-user {
-  color: #333;
-  font-family: Arial, Helvetica, sans-serif;
-  text-transform: uppercase; /* Texten visas i versaler */
+  color: #edecec;
+  font-family: "Courier New", Courier, monospace;
+  text-transform: uppercase;
   text-decoration: none;
   letter-spacing: 1px;
   font-size: 16px;
@@ -139,7 +128,6 @@ body, html {
   text-decoration: underline;
 }
 
-/* Formulärstilar */
 .form-container {
   margin-top: 20px;
   display: flex;
@@ -159,122 +147,76 @@ body, html {
   border-radius: 5px;
 }
 
-.form-container button {
-  padding: 8px 16px;
-  background-color: rgb(226, 191, 14);
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.form-container button:hover {
-  background-color: #0056b3;
-}
-
-/* Post-stilar */
 .post-list-container {
   display: flex;
   flex-direction: column;
-  align-items: left;
-  background-color: white;
+  background-color: rgb(245, 245, 245);
   padding: 10px;
-  border: 10px solid yellow;
-  margin: 10px auto;
-  max-width: 600px;
-  width: 100%;
-}
-.post-form-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 600px;
-  background-color: white;
-  border: 10px solid yellow;
-  margin: 10px auto; /* Detta centrerar elementet horisontellt */
-  padding: 20px;
+  margin-top: 10px;
+  border: 10px solid rgb(16, 16, 16);
+  width: 700px;
+  border-radius: 5px;
 }
 
-.post-content{
-  margin: 10px;
-  padding: 20px;
+.blogText {
+  word-wrap: break-word;
 }
-
 
 .post-container {
- 
   background-color: white;
-  margin: 10px;
-  padding: 20px;
+  margin: 20px;
+  padding: 30px;
   display: flex;
   flex-direction: column;
-  align-items: left;
+  border-radius: 5px;
 }
 
+.addPost-container {
+  background-color: white;
+  padding: 30px;
+  border-radius: 5px;
+  width: 600px;
+  border: 10px solid rgb(22, 22, 21);
+  margin: 10px auto;
+  padding: 20px;
+}
 
+.post-content {
+  display: flex;
+  justify-content: right;
+  flex-wrap: wrap;
+}
 
 .post-image {
   max-width: 100%;
+  min-width: 100%;
   height: auto;
   margin-top: 10px;
 }
 
-/* Blog-kontextstilar */
-.blog-context h2,
-.blog-context h3,
-.blog-context h4 {
-  color: #333;
-  letter-spacing: 1px;
-}
-
-.blog-context h2 {
-  font-size: 24px;
-  font-weight: bold;
-  text-align: center;
-}
-
-.blog-context h3 {
-  font-size: 16px;
-  font-weight: bold;
-  text-align: left;
-}
-
-.blog-context h4 {
-  font-size: 12px;
-  font-weight: bold;
-  text-align: left;
-}
-
 .blog-context p {
-  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-family: Arial, sans-serif;
   font-size: 12px;
   color: #333;
   text-align: left;
   letter-spacing: 0px;
 }
 
-/* Navbar stilar */
 .Navbar {
   display: flex;
-  align-items: end;
+  align-items: center;
   justify-content: end;
   padding: 20px;
-  background-color: yellow;
+  background-color: rgb(160, 1, 1);
 }
 
 li {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Arial, sans-serif;
 }
 
-input, textarea {
+input,
+textarea {
   width: 100%;
-  margin-bottom: 10px;
-}
-
-input {
-  margin-right: 20px;
-  color: rgb(0, 0, 0);
 }
 
 input::placeholder,
@@ -285,119 +227,116 @@ textarea::placeholder {
 }
 
 h1 {
-  color:yellow;
-  font-size: 64px;
-  padding-top: 40px;
+  color: rgb(14, 14, 13);
+  font-family: "Segoe UI";
+  font-size: 72px;
+  padding-top: 20px;
+  padding-bottom: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.buttoncontainer {
-  background-color: rgb(255, 255, 255);
-  padding-bottom: 6px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-}
-
-.buttons {
-  background-color: #e5b712;
-  color: #fff;
-  margin-right: 20px;
-  text-transform: uppercase;
-  letter-spacing: 6px;
-  border-style: none;
-  border-radius: 5px;
-  font-family: Helvetica, sans-serif;
-  font-size: 12px;
-  padding: 6px 12px;
-  text-align: center;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.buttons:hover {
-  background-color: #d4a710;
-}
-
-.buttons:active {
-  background-color: #4CAF50; /* Grön färg när knappen klickas */
-}
-
-.file-upload-button {
-  background-color: #e5b712;
-  color: #fff;
-  text-transform: uppercase;
-  letter-spacing: 6px;
-  margin-right: 20px;
-  border-style: none;
-  border-radius: 5px;
-  font-family: Helvetica, sans-serif;
-  font-size: 12px;
-  padding: 6px 12px;
-  text-align: center;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.file-upload-button:hover {
-  background-color: #d4a710;
-}
-
-.file-upload-button:active {
-  background-color: #4CAF50; /* Grön färg när knappen klickas */
 }
 
 a {
-  color:#333;
+  color: #edecec;
   padding-right: 20px;
 }
 
-/* Kommentar-formulärstilar */
-.comment-form {
-  display: flex;
-  align-items: center;
-  margin-top: 10px;
-  padding: 25px;
+a:hover {
+  color: #edecec;
 }
 
-.comments-section{
-  padding: 25px;
+.authorText {
+  padding: 10px 0px;
+}
+
+.comments-section {
+  padding-top: 20px;
+}
+
+.form-input,
+.form-textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+.form-textarea {
+  resize: vertical;
+}
+
+.button-container {
+  background-color: rgb(255, 255, 255);
+  padding-bottom: 20px;
+}
+
+button {
+  background-color: #0e832b;
+  color: #fff;
+  margin-right: 20px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-style: none;
+  border-radius: 5px;
+  font-family: Helvetica, sans-serif;
+  font-size: 13px;
+  padding: 6px 12px;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  border: 2px solid black;
+}
+
+button:hover {
+  background-color: #0a5c1f;
+}
+
+button:active {
+  background-color: #4caf50;
+}
+
+.deleteButton:hover {
+  background-color: rgb(162, 5, 5);
+}
+
+.logout-button {
+  color: #edecec;
+  background-color: transparent;
+  border: 2px solid black;
+}
+
+.logout-button:hover {
+  background-color: rgb(125, 33, 33);
+}
+
+.addPicButton {
+  background-color: #127c5c;
+  margin-top: 10px;
+}
+
+.addPostButton {
+  margin-right: 0px;
+  margin-top: 10px;
+}
+
+.commentButton {
+  margin-right: 0px;
+}
+
+.comment-form {
+  display: flex;
 }
 
 .comment-input {
-  flex: 1;
   padding: 8px;
-  border: 1px solid #ccc;
   border-radius: 4px;
   margin-right: 10px;
-  height: 40px; /* Sätt en fast höjd */
 }
 
-.comment-button {
-  background-color: rgb(226, 191, 14); /* Gula färgen från navbar */
-  border: none;
-  color: white;
-  padding: 0 16px; /* Gör bredden av knappen jämn */
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  cursor: pointer;
-  border-radius: 4px;
-  height: 40px; /* Sätt samma höjd som inputfältet */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.comment-button:hover {
-  background-color: #d4a710; /* Mörkare gul färg vid hover */
-}
-
-/* EditForm-stilar */
 .edit-form {
   margin: 20px 0;
 }
@@ -412,12 +351,13 @@ a {
   margin-bottom: 8px;
 }
 
-.form-input, .form-textarea {
+.form-input,
+.form-textarea {
   width: 100%;
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Arial, sans-serif;
   font-size: 14px;
   box-sizing: border-box;
 }
@@ -426,74 +366,20 @@ a {
   resize: vertical;
 }
 
-.button-group {
+.homePage {
   display: flex;
-  gap: 10px;
+  align-items: center;
+  flex-direction: column;
+}
+.welcomemessage {
+  padding-bottom: 10px;
+  font-size: 20px;
+  font-weight: 300;
+}
+.deadpoolintro {
+  width: 45%;
 }
 
-.button {
-  background-color: #e5b712;
-  color: white;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  border: none;
-  border-radius: 5px;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 14px;
-  padding: 10px 20px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  text-align: center;
-}
-
-.button:hover {
-  background-color: #d4a710;
-}
-
-.button-primary {
-  background-color: #4CAF50;
-}
-
-.button-primary:hover {
-  background-color: #45a049;
-}
-
-.button-secondary {
-  background-color: #f44336;
-}
-
-.button-secondary:hover {
-  background-color: #e41e1e;
-}
-
-/* Media queries för responsiv design */
-@media screen and (max-width: 768px) {
-  .app-content {
-    width: 100%;
-    margin: 20px;
-    padding: 10px;
-  }
-
- 
-
-  .post-container {
-
-    
-    margin: 5px;
-    padding: 5px;
-  }
-
-  .Navbar {
-    flex-direction: column;
-    align-items: center;
-    background-color: yellow;
-  }
-
-  input {
-    margin-right: 10px;
-  }
-
-  .buttoncontainer {
-    gap: 5px;
-  }
+.preformatted-text {
+  white-space: pre-wrap;
 }

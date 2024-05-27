@@ -1,12 +1,17 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import Navbar from './components/NavBar';
-import HomePage from './pages/HomePage';
-import AddPost from './pages/AddPost';
-import LoginComponent from './components/LoginComponent';
-import RegisterComponent from './components/RegisterComponent';
-import { AuthProvider, useAuth } from './context/AuthContext';
-import { BlogProvider } from './context/BlogContext';
+import React from "react";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
+import Navbar from "./components/NavBar";
+import HomePage from "./pages/HomePage";
+import AddPost from "./pages/AddPost";
+import LoginComponent from "./components/LoginComponent";
+import RegisterComponent from "./components/RegisterComponent";
+import { AuthProvider, useAuth } from "./context/AuthContext";
+import { BlogProvider } from "./context/BlogContext";
 
 const AppRoutes = () => {
   const { currentUser } = useAuth();

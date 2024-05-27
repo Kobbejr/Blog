@@ -9,15 +9,13 @@ export const useBlogContext = () => useContext(BlogContext);
 
 export const BlogProvider = ({ children }) => {
   const { currentUser } = useAuth();
-  const [posts, setPosts] = useState(() => {
-    const savedPosts = JSON.parse(localStorage.getItem("posts"));
-    return (
-      savedPosts || [
-        {
-          id: 1,
-          title: "A Merc's Manifesto",
-          author: "chimichangaconnoisseur@deadpool.com",
-          content: `Hey there, world! Welcome to my little slice of insanity on the interwebs. I'm Deadpool, your friendly neighborhood merc with a mouth, here to spice up your boring day with a dash of chaos and a sprinkle of sarcasm.
+
+  const defaultPosts = [
+    {
+      id: 1,
+      title: "A Merc's Manifesto",
+      author: "chimichangaconnoisseur@deadpool.com",
+      content: `Hey there, world! Welcome to my little slice of insanity on the interwebs. I'm Deadpool, your friendly neighborhood merc with a mouth, here to spice up your boring day with a dash of chaos and a sprinkle of sarcasm.
 
         In this blog, I'll be sharing all sorts of wacky adventures, random thoughts, and maybe even a few life lessons (if I'm feeling generous). So buckle up, folks, 'cause things are about to get wild!
 
@@ -25,16 +23,26 @@ export const BlogProvider = ({ children }) => {
 
         Stay tuned, my fellow weirdos. Deadpool out!`,
 
-          comments: [],
-          imageUrl: "",
-        },
-      ]
-    );
+      comments: [],
+      imageUrl: "",
+    },
+  ];
+
+  const [posts, setPosts] = useState(() => {
+    const storedPosts = localStorage.getItem("posts");
+    return storedPosts ? JSON.parse(storedPosts) : defaultPosts;
   });
 
   useEffect(() => {
     localStorage.setItem("posts", JSON.stringify(posts));
   }, [posts]);
+
+  const uploadImage = async (image) => {
+    const imageRef = ref(storage, `images/${Date.now()}_${image.name}`);
+    await uploadBytes(imageRef, image);
+    const downloadURL = await getDownloadURL(imageRef);
+    return downloadURL;
+  };
 
   const addPost = (newPost) => {
     setPosts((prevPosts) => [
@@ -71,18 +79,19 @@ export const BlogProvider = ({ children }) => {
     );
   };
 
-  const uploadImage = async (file) => {
-    try {
-      console.log("Uploading image to Firebase Storage:", file.name);
-      const storageRef = ref(storage, `images/${file.name}`);
-      await uploadBytes(storageRef, file);
-      const downloadURL = await getDownloadURL(storageRef);
-      console.log("Image URL:", downloadURL);
-      return downloadURL;
-    } catch (error) {
-      console.error("Error uploading image:", error);
-      throw error;
-    }
+  const deleteComment = (postId, commentId) => {
+    setPosts((prevPosts) =>
+      prevPosts.map((post) =>
+        post.id === postId
+          ? {
+              ...post,
+              comments: post.comments.filter(
+                (comment) => comment.id !== commentId
+              ),
+            }
+          : post
+      )
+    );
   };
 
   return (
@@ -95,6 +104,7 @@ export const BlogProvider = ({ children }) => {
         deletePost,
         addComment,
         uploadImage,
+        deleteComment, // Lägg till deleteComment i kontextens värde
       }}
     >
       {children}

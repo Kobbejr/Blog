@@ -22,7 +22,7 @@ const CommentForm = ({ postId }) => {
         placeholder="Add a comment"
         className="comment-input"
       />
-      <button type="submit" className="comment-button">
+      <button type="submit" className="commentButton">
         +
       </button>
     </form>

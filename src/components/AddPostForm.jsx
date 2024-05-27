@@ -2,73 +2,89 @@ import React, { useState } from "react";
 import { useBlogContext } from "../context/BlogContext";
 
 const AddPostForm = () => {
-  const [formData, setFormData] = useState({
-    title: "",
-    content: "",
-    image: null,
-  });
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
+  const [category, setCategory] = useState("");
+  const [image, setImage] = useState(null);
   const { addPost, uploadImage, currentUser } = useBlogContext();
 
-  const handleChange = (e) => {
-    const { name, value, files } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: files ? files[0] : value,
-    }));
-  };
-
+  // Hanterar formulärinlämning
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { title, content, image } = formData;
-    if (!title.trim() || !content.trim()) return;
-
-    try {
-      const imageUrl = image ? await uploadImage(image) : "";
-      const newPost = { title, content, author: currentUser.email, imageUrl };
+    let imageUrl = "";
+    if (image) {
+      try {
+        console.log("Uploading image:", image.name);
+        imageUrl = await uploadImage(image);
+        console.log("Image uploaded successfully:", imageUrl);
+      } catch (error) {
+        console.error("Failed to upload image", error);
+        return;
+      }
+    }
+    if (title.trim() && content.trim()) {
+      const newPost = {
+        title,
+        content,
+        category,
+        author: currentUser.email, // Använd e-postadressen som författare
+        imageUrl,
+      };
+      console.log("Creating new post:", newPost);
       addPost(newPost);
-      setFormData({ title: "", content: "", image: null });
-    } catch (error) {
-      console.error("Failed to upload image", error);
+      setTitle("");
+      setContent("");
+      setCategory("");
+      setImage(null);
     }
   };
 
+  // Hanterar filändring
+  const handleFileChange = (e) => {
+    setImage(e.target.files[0]);
+  };
+
+  // Hanterar filuppladdningsknappens klick
+  const handleFileUploadClick = () => {
+    document.getElementById("fileInput").click();
+  };
+
   return (
-    <form className="post-form-container" onSubmit={handleSubmit}>
-      <div className="post-content">
-        <input
-          type="text"
-          name="title"
-          value={formData.title}
-          onChange={handleChange}
-          placeholder="Title"
-          className="input-field"
-        />
-        <textarea
-          name="content"
-          value={formData.content}
-          onChange={handleChange}
-          placeholder="Content"
-          className="input-field"
-        />
-        <input
-          type="file"
-          id="fileInput"
-          name="image"
-          onChange={handleChange}
-          style={{ display: "none" }}
-        />
-        <button
-          type="button"
-          className="file-upload-button"
-          onClick={() => document.getElementById("fileInput").click()}
-        >
-          Välj fil
-        </button>
-        <button type="submit" className="buttons">
-          ADD
-        </button>
-      </div>
-    </form>
+    <div className="post-form-container">
+      <form className="addPost-container" onSubmit={handleSubmit}>
+        <div className="post-content">
+          <input
+            type="text"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            placeholder="Title"
+            className="input-field"
+          />
+          <textarea
+            value={content}
+            onChange={(e) => setContent(e.target.value)}
+            placeholder="Content"
+            className="input-field"
+          />
+          <input
+            type="file"
+            id="fileInput"
+            onChange={handleFileChange}
+            style={{ display: "none" }}
+          />
+          <button
+            type="button"
+            className="addPicButton"
+            onClick={handleFileUploadClick}
+          >
+            ADD PIC
+          </button>
+          <button type="submit" className="addPostButton">
+            ADD POST
+          </button>
+        </div>
+      </form>
+    </div>
   );
 };
 

@@ -16,6 +16,11 @@ const Post = ({
   const { posts } = useBlogContext();
   const post = posts.find((post) => post.id === id);
 
+  // Funktion för att rendera innehåll med radbrytningar
+  const renderContentWithLineBreaks = (content) => {
+    return { __html: content.replace(/\n/g, "<br>") };
+  };
+
   const handleEdit = (updatedPost) => {
     editPost(id, updatedPost);
     setIsEditing(false);
@@ -33,21 +38,19 @@ const Post = ({
           setIsEditing={setIsEditing}
         />
       ) : (
-        <div className="post-content">
+        <div className="blogPost-content">
           <h3>{title}</h3>
-          <p>{content}</p>
+          <div dangerouslySetInnerHTML={renderContentWithLineBreaks(content)} />
           {post.imageUrl && (
             <img src={post.imageUrl} alt={title} className="post-image" />
           )}
-          <p>
+          <div className="authorText">
             <strong>Author:</strong> {author}
-          </p>
+          </div>
           {currentUser?.email === author && (
             <div className="button-container">
-              <button className="buttons" onClick={() => setIsEditing(true)}>
-                Edit
-              </button>
-              <button className="buttons" onClick={() => deletePost(id)}>
+              <button onClick={() => setIsEditing(true)}>Edit</button>
+              <button className="deleteButton" onClick={() => deletePost(id)}>
                 Delete
               </button>
             </div>
@@ -60,13 +63,11 @@ const Post = ({
         {post.comments?.length ? (
           post.comments.map((comment, index) => (
             <div key={index} className="comment">
-              <p>
-                <strong>{comment.user}:</strong> {comment.text}
-              </p>
+              <strong>{comment.user}:</strong> {comment.text}
             </div>
           ))
         ) : (
-          <p>No comments yet. Be the first to comment!</p>
+          <p>Be the first to comment!</p>
         )}
       </div>
     </div>
