@@ -8,7 +8,6 @@ const AddPostForm = () => {
   const [image, setImage] = useState(null);
   const { addPost, uploadImage, currentUser } = useBlogContext();
 
-  // Hanterar formulärinlämning
   const handleSubmit = async (e) => {
     e.preventDefault();
     let imageUrl = "";
@@ -27,7 +26,7 @@ const AddPostForm = () => {
         title,
         content,
         category,
-        author: currentUser.email, // Använd e-postadressen som författare
+        author: currentUser.email,
         imageUrl,
       };
       console.log("Creating new post:", newPost);
@@ -39,12 +38,10 @@ const AddPostForm = () => {
     }
   };
 
-  // Hanterar filändring
   const handleFileChange = (e) => {
     setImage(e.target.files[0]);
   };
 
-  // Hanterar filuppladdningsknappens klick
   const handleFileUploadClick = () => {
     document.getElementById("fileInput").click();
   };

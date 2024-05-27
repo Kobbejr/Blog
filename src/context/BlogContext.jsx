@@ -104,7 +104,7 @@ export const BlogProvider = ({ children }) => {
         deletePost,
         addComment,
         uploadImage,
-        deleteComment, // Lägg till deleteComment i kontextens värde
+        deleteComment, // Lägg till deleteComment i kontextens värde (?)
       }}
     >
       {children}
